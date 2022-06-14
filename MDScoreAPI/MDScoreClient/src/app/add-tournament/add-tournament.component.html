@@ -1,0 +1,70 @@
+<div class="container mt-3 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-4  border bg-primary rounded">
+            <form [formGroup]="tournamentForm" (ngSubmit)="create()">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <div>
+                        <p class="alert alert-danger" *ngIf="validateControl('name') && hasError('name', 'required')">
+                            Name is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Image URL</label>
+                    <input type="text" class="form-control" formControlName="imageUrl">
+                    <div>
+                        <p class="alert alert-danger"
+                            *ngIf="validateControl('imageUrl') && hasError('imageUrl', 'required')">ImageUrl is required
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="row ">
+                        <div class="col col-lg-6 text-center">
+                            <label for="exampleInputEmail1">Start</label>
+                            <input type="date" formControlName="start" [min]="currentDate">
+                        </div>
+                        <div class="col col-lg-6 text-center">
+                            <label for="exampleInputEmail1">End</label>
+                            <input type="date" formControlName="end" min="{{tournamentForm.value.start}}">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group text-center w-100">
+                    <select class="custom-select" (change)="changeStyle($event)" formControlName="style">
+                        <option value="">Choose swimming style</option>
+                        <option *ngFor="let style of Style" [ngValue]="style">{{style}}</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group text-center w-100">
+                    <select class="custom" (change)="changeDistance($event)" formControlName="distance">
+                        <option value="">Choose swimming distance</option>
+                        <option *ngFor="let distance of Distance" [ngValue]="distance">{{distance}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Town</label>
+                    <input type="text" class="form-control" formControlName="town">
+                    <div>
+                        <p class="alert alert-danger" *ngIf="validateControl('town') && hasError('town', 'required')">
+                            Town is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Country</label>
+                    <input type="text" class="form-control" formControlName="country">
+                    <div>
+                        <p class="alert alert-danger"
+                            *ngIf="validateControl('country') && hasError('country', 'required')">Country is required
+                        </p>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-light mt-2 mb-2">Add</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="container border mb-2 mt-3">
+    <div class="row ">
+        <div class="col-lg-8 text-center mb-2 mt-3">
+            <img style="width: 100%; max-height:320px;" [src]="tournament.imageUrl" alt="">
+        </div>
+        <div class="col-lg-4 text-center mb-2 mt-3 info">
+            <div class="card border-primary mb-3" style="width: 100%;">
+                <div class="card-header">
+                    <h5>Name: {{ tournament.name }}</h5>
+                </div>
+                <div class="card-body text-primary">
+                    <h5>Start: {{ tournament.start | date : 'd MMM y'}}</h5>
+                    <h5>End: {{ tournament.end | date : 'd MMM y' }}</h5>
+                    <h5>Style: {{ tournament.style }}</h5>
+                    <h5>Distance: {{ tournament.distance }}</h5>
+                    <h5>Town: {{ tournament.town }}</h5>
+                    <h5>Country: {{ tournament.country }}</h5>
+                </div>
+                <div class="card-header">
+                    <h5>Winner: {{ tournament.winnerData }}</h5>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <form class="col text-center" *ngIf="isOrganizer()&&tournament.winnerData==='No result'"
+                    [formGroup]="listPlayersForm" (ngSubmit)="onSubmit()">
+
+                    <div formArrayName="players">
+                        <div *ngFor="let player of players().controls; let playerIndex=index">
+                            <div [formGroupName]="playerIndex">
+                                <select class="custom" (change)="changePlayer($event)" formControlName="id">
+                                    <option value="">Choose player</option>
+                                    <option *ngFor="let player of playersList" [ngValue]="player.id">
+                                        {{player.firstName +' '+ player.lastName+' - '+player.town+', '+player.country}}
+                                    </option>
+                                </select>
+
+                                <button class="btn btn-danger" (click)="removePlayer(playerIndex)">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <button type="button" class="btn btn-info" (click)="addPlayer()">Add Player</button>
+                    </p>
+                    <p>
+                        <button id="sub" class="btn btn-primary" type="submit">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row justify-content-center mt-3">
+        <h5>All tournament players</h5>
+        <table class="table mb-5 mt-3 border">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Town</th>
+                    <th>Country</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class=" text-center" *ngFor="let player of playersListParticipants">
+                <tr>
+                    <td>{{ player.firstName }}</td>
+                    <td>{{ player.lastName }}</td>
+                    <td>{{ player.town }}</td>
+                    <td>{{ player.country }}</td>
+                    <td> <a routerLink="/players/{{player.id}}" class="btn btn-primary">Info</a>
+                        <br>
+                        <button id="win" *ngIf="isOrganizer()&&tournament.winnerData==='No result'"
+                            class="btn btn-warning" (click)="addWinner(player.id, tournament.id)">Win</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

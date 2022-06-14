@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row mt-5 mb-5 justify-content-center">
+        <div class="col-lg-4 mb-5 text-center " *ngFor="let tournament of tournaments">
+            <div class="card " style="width: 100%;">
+                <img [src]="tournament.imageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Name: {{tournament.name}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Town: {{tournament.town}}</li>
+                    <li class="list-group-item">Country: {{tournament.country}}</li>
+                    <li class="list-group-item">Start date: {{tournament.start | date : 'd MMM y'}}</li>
+                    <li class="list-group-item">End date: {{tournament.end | date : 'd MMM y'}}</li>
+                </ul>
+                <div class="card-body">
+                    <a routerLink="/tournaments/{{tournament.id}}" class="btn btn-primary">Info</a>
+                    <button *ngIf="isOrganizer()" class="btn btn-danger"
+                        (click)="deleteTournament(tournament.id)">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="tournaments.length==0" class="jumbotron">
+            <p class="text-center">
+                <em class="text-muted">No tournaments added.</em>
+            </p>
+        </div>
+    </div>
+</div>

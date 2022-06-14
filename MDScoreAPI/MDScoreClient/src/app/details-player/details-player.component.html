@@ -1,0 +1,25 @@
+<div class="container border mb-2 mt-3">
+    <div class="row ">
+        <div class="col-lg-8 text-center mb-2 mt-3">
+            <img style="width: 100%; max-height:320px;" [src]="player.imageUrl" alt="">
+        </div>
+        <div class="col-lg-4 text-center mb-2 mt-3 info">
+            <div class="card border-primary mb-3" style="width: 100%;">
+                <div class="card-header">
+                    <h5>Name: {{ player.firstName }} {{player.lastName }}</h5>
+                </div>
+                <div class="card-body text-primary">
+                    <h5>Age: {{ player.age}}</h5>
+                    <h5>Town: {{ player.town }}</h5>
+                    <h5>Country: {{ player.country }}</h5>
+                    <h5>Speed: {{ player.averageSpeed }} km/h</h5>
+                    <h5>Win: {{ player.win }}</h5>
+                    <h5>Losses: {{ player.losses }}</h5>
+                    <h5>Tournaments: {{ player.tournamentsCount }}</h5>
+                </div>
+                <div class="card-header">
+                    <h5>Win: {{ player.win }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>

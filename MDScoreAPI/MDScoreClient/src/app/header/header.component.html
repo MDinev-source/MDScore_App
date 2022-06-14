@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container">
+        <a class="navbar-brand text-primary" href="/">MDScore</a>
+        <ul class="navbar-nav ml-auto ">
+            <li class="nav-item">
+                <a class="nav-item nav-link" routerLink="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="isOrganizer()" class="nav-item nav-link" routerLink="/create/player">Create Player</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="isOrganizer()" class="nav-item nav-link" routerLink="/create/tournament">Create Tournament</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" routerLink="/players">Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" routerLink="/tournaments">Tournaments</a>
+            </li>
+            <li *ngIf="!isSignedIn()" class="nav-item">
+                <a class="nav-item nav-link text-primary" routerLink="/login">Login</a>
+            </li>
+            <li *ngIf="!isSignedIn()" class="nav-item">
+                <a *ngIf="!isSignedIn()" class="nav-item nav-link text-primary" routerLink="/register">Register</a>
+            </li>
+            <li *ngIf="isSignedIn()" class="nav-item">
+                <a *ngIf="isSignedIn()" class="nav-item nav-link text-primary" (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

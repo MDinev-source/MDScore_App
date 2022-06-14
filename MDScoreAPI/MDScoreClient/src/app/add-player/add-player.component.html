@@ -1,0 +1,66 @@
+<div class="container mt-3 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-4  border bg-primary rounded">
+      <form [formGroup]="playerForm" (ngSubmit)="create()">
+        <div class="form-group">
+          <label for="exampleInputEmail1">First Name</label>
+          <input type="text" class="form-control" formControlName="firstName">
+          <div>
+            <p class="alert alert-danger" *ngIf="validateControl('firstName') && hasError('firstName', 'required')">
+              First name is required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Last Name</label>
+          <input type="text" class="form-control" formControlName="lastName">
+          <div>
+            <p class="alert alert-danger" *ngIf="validateControl('lastName') && hasError('lastName', 'required')">Last
+              name is required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Image URL</label>
+          <input type="text" class="form-control" formControlName="imageUrl">
+          <div>
+            <p class="alert alert-danger" *ngIf="validateControl('imageUrl') && hasError('imageUrl', 'required')">
+              ImageUrl is required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Age</label>
+          <input type="number" class="form-control" formControlName="age">
+          <div>
+            <p class="alert alert-danger" *ngIf="validateControl('age') && hasError('age', 'required')">Age is required
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Town</label>
+          <input type="text" class="form-control" formControlName="town">
+          <div>
+            <p class="alert alert-danger" *ngIf="validateControl('town') && hasError('town', 'required')">Town is
+              required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Country</label>
+          <input type="text" class="form-control" formControlName="country">
+          <div>
+            <p class="alert alert-danger" *ngIf="validateControl('country') && hasError('country', 'required')">Country
+              is required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Average speed</label>
+          <input type="number" min="5" step="0.1" max="30" class="form-control" formControlName="averageSpeed">
+          <div>
+            <p class="alert alert-danger"
+              *ngIf="validateControl('averageSpeed') && hasError('averageSpeed', 'required')">Average speed is required
+            </p>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-light mt-2 mb-2">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

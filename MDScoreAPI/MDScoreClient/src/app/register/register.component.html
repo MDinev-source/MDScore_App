@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-4  border bg-primary rounded">
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+              <div class="form-group">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" class="form-control" formControlName="firstName">
+                <div  >
+                  <p class="alert alert-danger" *ngIf="validateControl('firstName') && hasError('firstName', 'required')">First name is required</p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1">Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName">
+                <div  >
+                  <p class="alert alert-danger" *ngIf="validateControl('lastName') && hasError('lastName', 'required')">Last name is required</p>
+                </div>
+              </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" class="form-control" formControlName="username">
+                  <div  >
+                    <p class="alert alert-danger" *ngIf="validateControl('username') && hasError('username', 'required')">Username is required</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" formControlName="password">
+                  <div  >
+                    <p class="alert alert-danger" *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</p>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-light mt-2 mb-2">Register</button>
+              </form>
+        </div>
+    </div>
+</div>
+
